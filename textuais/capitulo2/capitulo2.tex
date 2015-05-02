@@ -1,0 +1,446 @@
+%!TEX root = ../../IF.tex
+%==================================================================================
+\chapter{Descrição da classe \texttt{if-ufg.cls}}
+%==================================================================================
+\label{capitulo2}
+
+O uso da classe começa na declaração \verb$\document[options]{class_name}$ no início de um documento \LaTeX:
+
+\begin{lstlisting}[style=lista]
+\documentclass[opções]{if-ufg}
+\end{lstlisting}
+
+\noindent
+em que as \uline{\emph{opções}} da classe \texttt{inf-ufg} podem ser:
+
+\begin{table}[!h]
+\centering
+\caption{Opções de configuração da classe \texttt{if-ufg.cls}.}
+\label{tab:opcoes_classe}
+\begin{tabular}{m{4cm}m{9cm}}
+\hline
+\textbf{OPÇÃO} & \textbf{DESCRIÇÃO} \\ \hline
+dissertacao & Dissertação de mestrado (padrão) \\ \hline
+tese & Tese de doutorado \\ \hline
+monografia & Monografia \\ \hline
+tcc & Certificado de Especialização \\ \hline
+quali-msc & Qualificação de mestrado \\ \hline
+quali-doc & Qualificação de doutorado \\ \hline
+frente & Modo de impressão de textos com versos brancos \\ \hline
+frenteVerso & Modo de impressão de textos em frente e verso \\ \hline
+abnt-alf & Usa o sistema alfabético de citação bibliográfica \\ \hline
+abnt-num & Usa o o sistema numérico de citação bibliográfica \\ \hline
+\end{tabular}
+\fonte{autor.}
+\end{table}
+
+\noindent
+As opções são sempre separadas por vírgulas. Por exemplo:
+
+\begin{lstlisting}[style=lista]
+\documentclass[frenteVerso,dissertacao,abnt-alf]{if-ufg}
+\end{lstlisting}
+
+\noindent
+o documento então usará impressão em \emph{frente e verso} no modo \emph{dissertação}, utilizando o estilo \emph{alfabético} de referências bibliográficas da ABNT. Caso acidentalmente escolha opções ``conflitantes'', do tipo monografia e tese no mesmo documento:
+
+\begin{lstlisting}[style=lista]
+\documentclass[frenteVerso,monografia,tese,abnt-alf]{if-ufg}
+\end{lstlisting}
+
+\noindent
+somente a última será escolhida (neste caso, a \emph{tese}).
+
+%==================================================================================
+\section{Codificação dos arquivos em UTF-8}
+%==================================================================================
+
+Esta classe foi escrita utilizando a codificação UTF-8, portanto, é necessário que todos os seus arquivos sejam escritos utilizando esta mesma codificação, inclusive os de referências bibliográficas. Usuários Windows, fiquem atentos!
+
+%==================================================================================
+\section{Comandos e Parâmetros da Classe}
+%==================================================================================
+
+Depois de iniciar o seu documento conforme descrito anteriormente, é necessário configurar os parâmetros dos comandos presentes na classe \texttt{if-ufg.cls} e no arquivo de configuração \texttt{pre\_textuais.config}. Convém notar que a ordem em que os comandos aparecem deve ser mantida a fim de evitar comportamentos estranhos ou inesperados. A estrutura padrão de um comando é \verb$\comando{x}$, em que \emph{x} é o parâmetro a ser configurado. 
+
+\vspace{20pt}
+\noindent
+\textcolor{red}{\uline{ATENÇÃO}}: \textbf{Não deixe espaços em branco logo em seguida ao colchete de abertura e antes do colchete \mbox{de fechamento}}. Por exemplo, se o seu trabalho não possuir subtítulo, deixe o segundo campo vazio: \Verb+\titulo{Título do Trabalho}{}+. O mesmo vale para os campos de quaisquer outros comandos.
+\vspace{20pt}
+
+Antes de iniciar o seu documento com \verb$\begin{document}...\end{document}$, é necessário configurar alguns parâmetros de impressão e paginação:
+
+\begin{enumerate}[label=(\arabic*)]
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\colorspace{x}+\hfill\\
+Seleciona o espaco de cor (rgb/cmyk) para impressão. Exemplo: \Verb+\colorspace{rgb}+.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\imprimir{x}+\hfill\\
+Habilita ou desabilita o modo de imprimir (on/off). Exemplo: \Verb+\imprimir{off}+. Este comando serve para retirar a cor dos links no momento em que o documento estiver pronto para ser impresso. Para a versão eletrônica em PDF, os \emph{links} coloridos auxiliam na navegação ao longo do documento.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\paginacao{x}+\hfill\\
+Neste contexto, configura o modo como as páginas são enumeradas. Possui 3 opções:
+\begin{enumerate}[label=\alph*)]
+\item \textbf{arabic}: começa a contar a numeração desde a capa, mas só imprime as páginas a partir do primeiro capítulo após o sumário e em algarismos arábicos;
+\item \textbf{roman}: imprime (exceto na capa) as páginas em algarismos romanos em minúsculo até o sumário. O primeiro capítulo inicia a contagem comecando do 1 e imprime em algarismos arábicos as paginas restantes;
+\item \textbf{Roman}:  o mesmo que a opção ``roman'', mas em algarismos romanos maiúsculos.
+\end{enumerate}
+\end{enumerate}
+
+A seguir, após iniciar o seu documento com \verb$\begin{document}$, configure os parâmetros dos seguintes comandos na ordem em que aparecem:
+
+\makeatletter
+\global\let\tikz@ensure@dollar@catcode=\relax
+\makeatother
+
+\begin{enumerate}[label=(\arabic*)]
+\setcounter{enumi}{3}
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\autor{Nome completo do autor}{Nome de citação}{sexo}+\hfill\\
+Exemplo: \Verb+\autor{Alexandre Barbosa de Almeida}{ALMEIDA, A. B.}{M}+, note que o nome de citação deve conter os pontos finais nas abreviações \{ALMEIDA, A.B.\} e o sexo aceita duas opções: \{M\} (masculino) ou \{F\} (feminino).
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\titulo{Título do trabalho}{Subtítulo}+\hfill\\
+Título e subtítulo do trabalho (se houver). Caso algum parâmetro não concorresponda à realidade do autor, deixe-o vazio. Por exemplo, se o seu trabalho não possuir subtítulo, faça: \Verb+\titulo{Nome do trabalho}{}+.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\universidade{Nome da Universidade}{Abreviação do nome}+\hfill\\
+Exemplo: \Verb+\universidade{Universidade Federal de Goiás}{UFG}+.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\faculdade{Nome da faculdade}{Departamento ou Grupo de Pesquisa}+\hfill\\
+Exemplo: \Verb+\faculdade{Instituto de Física}{Grupo de Física Computacional}+.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\habilitacao{Tipo de habilitação}+\hfill\\
+Informe se a habilitação é de \emph{Licenciado} ou \emph{Bacharelado}.\\ Exemplo: \Verb+\habilitacao{Bacharelado}+.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\cidade{Nome da cidade}+\hfill\\
+Nome da cidade em que o trabalho foi realizado.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\data{DD}{MM}{AAAA}+\hfill\\
+Data no formato dia/mês/ano (DD/MM/AAAA).
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\orientador{Nome completo do orientador}{Nome de citação}{sexo}+\hfill\\
+Nome completo do orientador, nome de citação e gênero sexual (M/F).
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\orientadorfacul{Faculdade de origem do orientador}{Dept. ou Grupo}+\hfill\\
+Faculdade e departamento de origem do orientador.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\coorientador{Nome completo do coorientador}{Nome de citação}{sexo}+\hfill\\
+Nome completo do coorientador, nome de citação e gênero sexual (M/F).
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\posgrad{Nome do programa de pós-graduação}+\hfill\\
+Exemplo: \Verb+\posgrad{Física}+.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\pesquisa{Área de pesquisa}+\hfill\\
+Nome da área de pesquisa.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\banca*+\hfill\\
+Comando sem parâmetro, inclui o nome do(a) orientador(a) automaticamente como presidente da banca.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\banca{\textbf{Nome do Membro 1} \\ Faculdade de origem}+\hfill\\
+Repita este comando para cada membro que fizer parte de sua banca.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\bancavskip{size}+\hfill\\
+Define o espaçamento vertical entre os nomes dos membros da banca. Exemplo: \Verb+\bancavskip{40pt}+.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\bancahrule{size}+\hfill\\
+Define o comprimento da linha horizontal sobre o nome dos membros da banca. Exemplo: \Verb+\bancahrule{10cm}+.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\printmodelo+\hfill\\
+Comando sem parâmetro, serve apenas para imprimir o nome ``MODELO'' (marca d'água) na capa. Retire isto posteriormente.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+capa{x}+\hfill\\
+Gera o modelo da capa externa do trabalho. Recebe um dos seguintes argumentos:
+
+\noindent
+a) \textbf{vazio} (sem espacos): imprime o título apenas em texto.\\ 
+Exemplo: \Verb+\capa{}+.\\
+\noindent
+b) \textbf{logotipo}: imprime o título com o logotipo colorido.\\ 
+Exemplo: \Verb+\capa{logotipo}+;\\
+\noindent
+c) \textbf{logotipo=black}: imprime o título com o logotipo na cor preta.\\
+Exemplo: \Verb+\capa{logotipo=black}+.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\publicacao+\hfill\\
+Comando sem parâmetro, gera a autorização para publicação em formato eletrônico.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\folhaderosto+\hfill\\
+Comando sem parâmetro, gera a folha de rosto do trabalho.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\cdu{1. Palavra-chave 1. 2. Palavra-chave 2. 3. Palavra-chave 3.}+\hfill\\
+Gera um modelo de ficha catalografia, que deve ser substituido pelo modelo fornecido pela biblioteca ou órgão responsável:
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\aprovacao+\hfill\\
+Gera o termo de aprovação.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{perfil}...\end{perfil}+\hfill\\
+Ambiente para escrever um texto resumido do perfil do autor na página de direitos autorais.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{dedicatoria}...\end{dedicatoria}+\hfill\\
+Ambiente para escrever a dedicatória do trabalho.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{agradecimentos}...\end{agradecimentos}+\hfill\\
+Ambiente para escrever os agradecimentos.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{epigrafe}...\end{epigrafe}+\hfill\\
+Ambiente para escrever a epígrafe.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{resumo}{idioma}{palavras-chave}...\end{resumo}+\hfill\\
+Ambiente para escrever o resumo do trabalho. O parâmetro \uline{\emph{idioma}} aceita duas opções: 
+
+\noindent
+a) \textbf{pt}: para fazer o resumo em português;
+
+\noindent
+b) \textbf{en}: para fazer o resumo em inglês (\emph{abstract}).
+
+\noindent
+Para cada idioma de resumo, é necessário escrever um ambiente diferente com o idioma informado corretamente. Já as palavras-chave, normalmente são apenas três e devem ser indicadas assim: \texttt{Palavra-chave 1. Palava-chave 2. Palavra-chave 3.}
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\listadefiguras+ \hfill\\
+Sem parâmetro. Apenas ative as listas caso existam figuras no seu documento. Figuras e tabelas sem legenda (caption), não aparecem por padrão nas listas.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\listadetabelas+ \hfill\\
+Sem parâmetro. Apenas ative as listas caso existam tabelas no seu documento. Figuras e tabelas sem legenda (caption), não aparecem por padrão nas listas.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\listadealgoritmos+ \hfill\\
+Sem parâmetro. Apenas ative se utilizar o ambiente:\\ \Verb+\begin{algoritmo}...\end{algoritmo}+\\ para escrever algoritmos.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\listadecodigos+ \hfill\\
+Sem parâmetro. Apenas ative se utilizar o ambiente:\\ \Verb+\begin{codigo}{language=Nome da linguagem}{Legenda}...\end{codigo}+\\ para escrever códigos no seu documento.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\sumario+ \hfill\\
+Gera o sumário do trabalho.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\bibliography{path/to/bibliografia}+ \hfill\\
+Gera as referencias bibliograficas. Observe que o nome do arquivo \emph{bibtex} neste caso é ``bibliografia.bib'', mas a extensão \emph{.bib} deve ser omitida. 
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{apendices}...\end{apendices}+ \hfill\\
+Ambiente para colocar os capitulos que compõem os apêndices. Exemplo: 
+\begin{Verbatim}
+\begin{apendices}
+\input{path/to/apendice-A}
+\input{path/to/apendice-B}
+\end{apendices}
+\end{Verbatim}
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{anexos}...\end{anexos}+ \hfill\\
+Ambiente para colocar os capitulos que compõem os anexos. Exemplo: 
+\begin{Verbatim}
+\begin{anexos}
+\input{path/to/anexo-1}
+\input{path/to/anexo-2}
+\end{anexos}
+\end{Verbatim}
+\end{enumerate}
+
+Esta é toda a estrutura do seu documento \LaTeX, agora você já está seguro para encerrar o seu trabalho com \Verb+\end{document}+. Contudo, ainda existem mais 5 (cinco) comandos disponíveis para serem utilizados dentro dos capítulos enquanto você escreve o seu texto, são eles:
+
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+
+\begin{enumerate}
+\setcounter{enumi}{38}
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{citacao}...\end{citacao}+ \hfill\\
+Ambiente para quando se deseja fazer uma citação mais longa (mais de 3 linhas), de acordo com as normas da ABNT.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{codigo}{language=Nome da linguagem}{Legenda}...\end{codigo}+ \hfill\\
+Este comando foi criado com base no pacote \emph{listings}, ele serve para digitar códigos de programas com um modo de visualização mais agradável no texto. Para maiores informações, bem como uma lista completa das linguagens de programação suportadas, veja a documentação do pacote em \citeonline{listings:2015}.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\importarcodigo{language=Nome da linguagem}{Legenda}{path/programa}+ \hfill\\
+Comando para importar um código e escrever no texto diretamente do diretório (\emph{path/to/programa}) em que o código se encontra.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{algoritmo}...\end{algoritmo}+ \hfill\\
+Ambiente para escrever algoritmos baseado no pacote \texttt{algorithm2e}.
+
+\item \Verb[fontseries=b,formatcom=\color{red!80!black}]+\begin{paisagem}...\end{paisagem}+ \hfill\\
+Ambiente que altera para o modo paisagem o \emph{layout} de uma página, indicado para quando é preciso inserir tabelas com um número muito grande de colunas.
+\end{enumerate}
+
+\noindent
+O exemplo de uso destes últimos cinco comandos, bem como uma estrutura básica de um trabalho e o modo adequado de importar figuras, criar tabelas, entre outros, será exemplificado no próximo capítulo.
+
+%==================================================================================
+\section{Pacotes Utilizados}
+%==================================================================================
+
+É importante não entrar em conflito com os pacotes (e suas opções) que a classe já utiliza por padrão quando estiver redigindo o seu documento. Os pacotes que a classe \texttt{if-ufg.cls} faz uso são:
+
+\begin{description}
+\item[etoolbox:]\hfill\\
+Pacote etoolbox fornece operações lógicas entre números, strings, macros, além de
+estruturas condicionais (if), de repetição (for), etc.
+
+\item[ifthen:]\hfill\\
+Oferece opções de operações lógicas.
+
+\item[babel:]\hfill\\
+Hifenização das palavras em português do Brasil.
+
+\item[inputenc:]\hfill\\
+Codificação de texto inserido.
+
+\item[fontenc:]\hfill\\
+Codificação das fontes de texto.
+
+\item[import:]\hfill\\
+Pacote para gerenciar caminhos relativos.
+
+\item[lmodern:]\hfill\\
+Fontes de texto do tipo Latin Modern.
+
+\item[amsfonts:]\hfill\\
+Fontes de texto para equações matemáticas.
+
+\item[tocloft:]\hfill\\
+Formatação do sumário, lista de figuras e tabelas.
+
+\item[titlesec:]\hfill\\
+Estilo de títulos de capítulos, seções, etc.
+
+\item[appendix:]\hfill\\
+Formatação dos apêndices.
+
+\item[calc:]\hfill\\
+Permite operações matemáticas entre macros.
+
+\item[setspace:]\hfill\\
+Fornece tipos de espaçamentos entre as linhas.
+
+\item[indentfirst:]\hfill\\
+Identação automática das primeiras linhas.
+
+\item[geometry:]\hfill\\
+Define a geometria (layout) do documento.
+
+\item[fancyhdr:]\hfill\\
+Customização de cabeçalhos e rodapés.
+
+\item[ifpdf:]\hfill\\
+Verifica se o pdfTeX está em uso para gerar o PDF.
+
+\item[xstring:]\hfill\\
+Permite operações lógicas com strings.
+
+\item[ulem:]\hfill\\
+Permite o uso de underlines.
+
+\item[amsmath:]\hfill\\
+Pacotes matemáticos da distribuição AMS-LaTeX.
+
+\item[amssymb:]\hfill\\
+Pacote de símbolos matemáticos da distribuição AMS-LaTeX.
+
+\item[xcolor:]\hfill\\
+Customização do uso de cores.
+
+\item[graphicx:]\hfill\\
+Gerencia a inclusão de figuras e gráficos em geral.
+
+\item[listings:]\hfill\\
+Pacote para gerenciar a impressão de códigos de programas.
+
+\item[tikz:]\hfill\\
+Poderoso ambiente de criação de desenhos 2D e 3D.
+
+\item[float:]\hfill\\
+Interface para objetos \emph{floats}.
+
+\item[caption:]\hfill\\
+Formatação do estilo das legendas.
+
+\item[chngcntr:]\hfill\\
+Gerencia contadores.
+
+\item[lscape:]\hfill\\
+Página no modo paisagem.
+
+\item[algorithm2e:]\hfill\\
+Ambiente para escrita de algoritmos (pseudo-códigos).
+
+\item[lastpage:]\hfill\\
+Referencia a numeração de todas as páginas até a última.
+
+\item[url:]\hfill\\
+Auxilia na impressao correta de URLs.
+
+\item[hyperref:]\hfill\\
+Gerencia o modo de referência cruzada.
+
+\item[cite:]\hfill\\
+Controla o modo em que as citações são feitas.
+
+\item[abntex2cite:]\hfill\\
+Estilo de citações bibliográficas da ABNT.
+
+\item[backref:]\hfill\\
+Faz referência reversa em citações bibliográficas.
+
+\end{description}
+
+Caso você se esqueça destes pacotes padrões da classe \texttt{if-ufg.cls} e, durante o seu trabalho fizer a chamada de algum deles, poderá ocorrer um erro com a seguinte mensagem durante a compilação:
+
+\begin{center}
+\colorbox{black!8}{\rlap{! LaTeX Error: Option clash for package <nome do pacote>.}\hspace{\linewidth}\hspace{-2\fboxsep}}
+\end{center}
+
+\noindent
+Se isto acontecer, você saberá então qual é a possível causa deste problema. Convém ressaltar que estes pacotes, por sua vez, geralmente carregam muitos outros pacotes e os modificam de alguma maneira. Embora esta classe utilize todos estes pacotes listados, em verdade, estão sendo utilizados muitos outros ainda por detrás das cenas.
+
+%==================================================================================
+\subsection{Pacote \textit{import} - caminhos relativos}
+%==================================================================================
+
+Para aqueles que entendem o conceito de caminhos absolutos e caminhos relativos, sabe que para projetos grandes com um grande números de arquivos \emph{.tex} para importar, utilizar o comando \Verb+\input{x}+ se torna tedioso, uma vez que ele apenas aceita \textbf{caminhos absolutos} até o arquivo, o que acaba tornando o \emph{path} sempre muito extenso. 
+
+O pacote \texttt{import} auxilia neste gerenciamento de \emph{paths}, com a possibilidade de torná-los \emph{caminhos relativos}. Veja um exemplo com o uso do comando \Verb+\subimport{x}{x}+ do pacote \texttt{import}, presente no arquivo \texttt{textuais\_config.tex}:
+
+\begin{codigo}{style=lista}{Exemplo de uso do pacote \emph{import}.}
+\subimport{./textuais/capitulo1/}{capitulo1}
+
+\subimport{./textuais/capitulo2/}{capitulo2}
+
+\subimport{./textuais/capitulo3/}{capitulo3}
+\end{codigo}
+
+Neste caso, o primeiro campo é preenchido com o caminho (\emph{path}) \textbf{absoluto} até o diretório que contém o arquivo, com o detalhe para a barra (/) no final do \emph{path} e depois, no segundo campo, o nome do arquivo sem a extensão \emph{.tex} para importar. No nosso caso, o diretório e o arquivo possuem o mesmo nome, mas lembre-se que o segundo campo é o nome do arquivo.
+
+Agora, suponha que exista uma subpasta \drawtikzfolder\ \texttt{figuras} dentro do diretório \mbox{\drawtikzfolder\ \texttt{capitulo1}}. Se você estiver digitando o seu texto em \emph{capitulo1.tex} e desejar incluir uma figura com o comando \Verb+\includegraphics{path}+, teria então que indicar um \emph{path} absoluto até a figura (de acordo com o nosso \emph{workspace}):
+
+\begin{center}
+\colorbox{black!8}{\rlap{\textbackslash{\texttt{includegraphics\{./textuais/capitulo1/figuras/figura1.png\}}}}\hspace{\linewidth}\hspace{-2\fboxsep}}
+\end{center}
+
+\noindent
+Mas com o pacote \textbf{import} e utilizando o seguinte comando:
+
+\begin{center}
+\colorbox{black!8}{\rlap{\textbackslash{\texttt{subimport\{./textuais/capitulo1/\}\{capitulo1\}}}}\hspace{\linewidth}\hspace{-2\fboxsep}}
+\end{center} 
+
+\noindent
+ para importar o \texttt{capitulo1.tex}, agora tudo que estiver dentro do diretório \drawtikzfolder\ \texttt{capitulo1} pode ser indicado com o uso de um \emph{path relativo}, então:
+
+\begin{center}
+\colorbox{black!8}{\rlap{\textbackslash{\texttt{includegraphics\{./figuras/figura1.png\}}}}\hspace{\linewidth}\hspace{-2\fboxsep}}
+\end{center}
+
+\noindent
+irá funcionar corretamente.
+
+%==================================================================================
+\section{Qualidade da Impressão}
+%==================================================================================
+
+Esta classe utiliza o espaço de cores RGB (Red, Green, Blue) por padrão, que é o mais indicado para monitores a fim de melhorar a experiência de visualização eletrônica do PDF. As impressoras, imprensas, fotocopiadoras e trabalhos feitos por gráficas em geral, trabalham usualmente no espaço de cores CMYK (Cyan, Magenta, Yellow, black Key), mais adequado para documentos impressos. 
+
+Se o seu trabalho acadêmico exigir muito recurso gráfico para figuras de altíssima definição, cuja impressão fique realmente comprometida por se trabalhar no espaço RGB e, ainda, você deseja imprimir profissionalmente em uma gráfica ou com qualidade melhor em impressoras de alto nível, considere configurar para \Verb+\colorspace{cmyk}+. 
+
+Você perceberá que as cores do documento mudam ligeiramente de tonalidade. Contudo, para a maioria das situações normais, o espaço RGB satisfaz completamente. Note que esta configuração apenas altera as cores do documento, as figuras importadas não serão convertidas de um espaço de cor para outro, elas já devem ser importadas na escala desejada, sendo que esta conversão deve ser feita por um programa externo, como o Photoshop ou GIMP.
+
+%==================================================================================
+\section{Compilador \textit{pdflatex}}
+%==================================================================================
+
+Atualmente, a classe \texttt{if-ufg.cls} é compatível apenas com o compilador \texttt{pdflatex}. Existem vários outros: \emph{tex}, \emph{pdftex}, \emph{xelatex}, \emph{luatex}, etc.
+
+Caso queira utilizar um compilador de sua preferência, será necessário se atentar para a necessidade de modificar alguns pacotes da classe, verificar o uso de fontes, entre outras alterações, uma vez que os compiladores se comportam de maneiras diferentes entre eles. Por exemplo, existem pacotes que são incompatíveis entre si mas que realizam a mesma função, tais como o pacote \emph{babel} para ser utilizado com o \texttt{pdflatex}, e o pacote \emph{polyglossia} para ser utilizado com o \emph{xelatex}. 
+
+Tais modificações serão por sua conta e risco, sem nenhuma garantia de que a classe continuará com suas funcionalidades, podendo resultar em comportamentos estranhos não previstos. Para mais informações sobre os diferentes compiladores, veja em \citeonline{compiladores:2015}.
