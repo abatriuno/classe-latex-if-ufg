@@ -1,0 +1,98 @@
+%==================================================================================
+%                                    CAPA
+%==================================================================================
+\printmodelo           % Imprime o nome modelo na capa. Comente isto posteriormente.
+\capa{logotipo=black}  % Gera o modelo da capa externa do trabalho, recebe 3 argumentos:
+%                          1) vazio (sem espacos): imprime o titulo apenas em texto;
+%                          2) logotipo: imprime o titulo com o logotipo colorido; 
+%                          3) logotipo=black: imprime o titulo com o logotipo na cor preta.
+
+%==================================================================================
+%                    AUTORIZACAO PARA PUBLICACAO NA INTERNET
+%==================================================================================
+% Gera a autorizacao para publicacao em formato eletronico:
+
+\publicacao
+
+%==================================================================================
+%                               FOLHA DE ROSTO
+%==================================================================================
+% Gera a folha de rosto do trabalho:
+
+\folhaderosto
+
+%==================================================================================
+%                       FICHA CATALOGRAFICA DA BIBLIOTECA
+%==================================================================================
+% Gera um modelo de ficha catalografia, que deve ser substituido pelo modelo
+% fornecido pela biblioteca ou orgao responsavel:
+
+\cdu{}
+
+%==================================================================================
+%                              MEMBROS DA BANCA
+%==================================================================================
+% Se o co-orientador estiver presente na banca, insira o nome dele como se fosse
+% apenas um outro membro
+
+\banca*            % Inclui o nome do(a) orientador(a) automaticamente como presidente da banca
+\banca{\textbf{NOME DO MEMBRO DA BANCA} \\ FACULDADE DO MEMBRO DA BANCA }
+\banca{\textbf{ } }
+\bancavskip{40pt}   % Define o espaçamento vertical entre os nomes dos membros da banca
+\bancahrule{10cm}   % Define o comprimento da linha horizontal sobre o nome dos membros da banca
+
+%==================================================================================
+%                             TERMO DE APROVACAO
+%==================================================================================
+% Gera o termo de aprovacao:
+
+\aprovacao
+
+%==================================================================================
+%                             DIREITOS AUTORAIS
+%==================================================================================
+\input{pre_textuais/copyright}
+
+%==================================================================================
+%                               DEDICATÓRIA
+%==================================================================================
+\input{pre_textuais/dedicatoria}
+
+%==================================================================================
+%                             AGRADECIMENTOS
+%==================================================================================
+\input{pre_textuais/agradecimentos}
+
+%==================================================================================
+%                               EPIGRAFE
+%==================================================================================
+\input{pre_textuais/epigrafe}
+
+%==================================================================================
+%                                RESUMO
+%==================================================================================
+\input{pre_textuais/resumo}
+
+%==================================================================================
+%                       LISTA DE FIGURAS E TABELAS
+%==================================================================================
+% Apenas ative as listas caso existam figuras e/ou tabelas no seu documento. 
+% Figuras e tabelas sem legenda (caption), nao aparecem por padrao nas listas.
+
+\listadefiguras
+\listadetabelas
+
+%==================================================================================
+%                      LISTA DE CODIGOS E ALGORITMOS
+%==================================================================================
+% Apenas ative as listas caso existam codigos e/ou algoritmos no seu documento.:
+
+% \listadealgoritmos
+% \listadecodigos
+
+%==================================================================================
+%                                SUMARIO
+%==================================================================================
+% Gera o sumario do trabalho:
+
+\sumario

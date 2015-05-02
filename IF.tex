@@ -1,0 +1,97 @@
+\documentclass[frenteVerso,quali-msc,tese,abnt-alf]{if-ufg}
+% Opções da classe inf-ufg:
+%   [tcc]               -> Trabalho de conclusão de curso.
+%   [monografia]        -> Monografia.
+%   [quali-msc]         -> Qualificação de mestrado.
+%   [dissertacao]       -> Dissertação de mestrado (padrão).
+%   [quali-doc]         -> Qualificação de doutorado.
+%   [tese]              -> Tese de doutorado.
+%   [abnt-alf]          -> Usa o estilo "abnt-alf" de citação bibliográfica alfabética.
+%   [abnt-num]          -> Usa o estilo "abnt-num" de citação bibliográfica numérica.
+
+%==================================================================================
+%                          PACOTES UTILIZADOS PELO USUARIO
+%==================================================================================
+% Declare aqui os pacotes extras que voce utilizar, cuidado para nao entrar em
+% conflito com os pacotes que a classe ja utiliza:
+
+\usepackage{lipsum}
+\usepackage{layout}
+\usepackage{enumerate}
+\usepackage{fancyvrb}
+\usepackage[os=win]{menukeys}
+\usepackage[normalem]{ulem}
+\usepackage{enumitem}
+
+%==================================================================================
+%                             IMPRESSÃO DO DOCUMENTO
+%==================================================================================
+% Use estas opcoes SOMENTE quando for IMPRIMIR o documento final para selecionar
+% o espaco de cores e desabilitar as cores dos links:
+
+\colorspace{rgb}               % Seleciona o espaco de cor (rgb/cmyk)
+\imprimir{off}                 % Habilita ou desabilita o modo de imprimir (on/off)
+
+%==================================================================================
+%                              INICIO DO DOCUMENTO
+%==================================================================================
+\begin{document}
+
+% \layout
+
+% Nome completo do autor, nome de citacao e genero sexual (M/F):
+\autor{Alexandre Barbosa de Almeida}{ALMEIDA, A. B.}{M}
+
+% Tituto e subtitulo do trabalho:
+\titulo{Classe \LaTeX\ Para Formatação de Trabalhos Acadêmicos (ABNT)}{TCC, Monografia, Qualificação, Dissertação e Tese}
+
+% Nome da Universidade e a sigla (abreviacao):
+\universidade{Universidade Federal de Goiás}{UFG}
+
+% Nome da faculdade e do departamento ou grupo de pesquisa:
+\faculdade{Instituto de Física}{Nome do Departamento ou Grupo de Pesquisa}
+
+% Habilitacao entre Licenciado ou Bacharelado:
+\habilitacao{Bacharelado}
+
+% Nome da cidade em que o trabalho foi realizado:
+\cidade{Goiânia}
+
+% Data no formato dia/mes/ano (DD/MM/AAAA):
+\data{19}{04}{2015}
+
+% Nome completo do orientador, nome de citacao e genero sexual (M/F):
+\orientador{Prof. Dr. Salviano de Araújo Leão}{LEÃO, S. A.}{M}
+
+% Faculdade e departamento de origem do orientador:
+\orientadorfacul{Instituto de Física}{Física Computacional}
+
+% Nome completo do coorientador, nome de citacao e genero sexual (M/F):
+\coorientador{Prof. Dr. Albert Einstein}{EINSTEIN, A.}{M}
+
+% Faculdade e departamento de origem do coorientador:
+% \coorientadorfacul{Instituto de Estudos Avançados - Universidade de Princeton}{Física Teórica}
+
+% Nome do programa de pos-graduacao:
+\posgrad{Física}
+
+% Nome da area de pesquisa:
+\pesquisa{Física Computacional}
+
+%==================================================================================
+%                            ELEMENTOS PRE-TEXTUAIS
+%==================================================================================
+\input{pre_textuais/pre_config}
+
+%==================================================================================
+%                              ELEMENTOS TEXTUAIS
+%==================================================================================
+
+\input{textuais/text_config}
+
+%==================================================================================
+%                            ELEMENTOS POS-TEXTUAIS
+%==================================================================================
+\input{pos_textuais/pos_config}
+
+\end{document}
