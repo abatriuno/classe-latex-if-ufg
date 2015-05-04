@@ -177,13 +177,8 @@
     \setboolean{ABNTbackref}{true}                    
 }{}
 \ifbool{>abnt-num}{%
-<<<<<<< HEAD
-	\RequirePackage{cite}              % Pacote de citacoes. Neste caso, precisa ser carregado
-	                                   % antes do pacote abntex2cite.
-=======
     \RequirePackage{cite}              % Pacote de citacoes. Neste caso, precisa ser carregado
                                        % antes do pacote abntex2cite.
->>>>>>> desenvolvimento
     \RequirePackage[num,abnt-emphasize=bf,abnt-etal-list=3,%
                     abnt-repeated-author-omit=yes,compress]{abntex2cite}
     \citebrackets[]
@@ -254,50 +249,28 @@
 % EM FASE DE TESTES, NAO ALTERE!
 %----------------------------------------------------------------------------------
 \def\paginacao#1{%
-<<<<<<< HEAD
-	\IfStrEqCase{#1}{%
-		{arabic}{\def\page@style{arabic}\def\page@type{empty}}
-		{roman}{\def\page@style{roman}\def\page@type{plain}\global\booltrue{>paginacao}}		
-		{Roman}{\def\page@style{Roman}\def\page@type{plain}\global\booltrue{>paginacao}}}
-	[\ClassError{\@classname}{Only ``arabic'', ``roman'' or ``Roman'' are valid arguments on }{}]  
-=======
     \IfStrEqCase{#1}{%
         {arabic}{\def\page@style{arabic}\def\page@type{empty}}
         {roman}{\def\page@style{roman}\def\page@type{plain}\global\booltrue{>paginacao}}        
         {Roman}{\def\page@style{Roman}\def\page@type{plain}\global\booltrue{>paginacao}}}
     [\ClassError{\@classname}{Only ``arabic'', ``roman'' or ``Roman'' are valid arguments on }{}]  
->>>>>>> desenvolvimento
 }
 \paginacao{arabic}                                                        % Default
 
 \AtBeginDocument{%
-<<<<<<< HEAD
-	\IfStrEqCase{\page@style}{%
-		{arabic}{\pagenumbering{arabic}}
-		{roman}{\pagenumbering{roman}}	
-		{Roman}{\pagenumbering{Roman}}}[]
-=======
     \IfStrEqCase{\page@style}{%
         {arabic}{\pagenumbering{arabic}}
         {roman}{\pagenumbering{roman}}  
         {Roman}{\pagenumbering{Roman}}}[]
->>>>>>> desenvolvimento
 }
 
 % Definicao do comando \colorspace{x} para definir o espaco de cores:
 %----------------------------------------------------------------------------------
 \def\colorspace#1{%
-<<<<<<< HEAD
-	\IfStrEqCase{#1}{%
-		{rgb}{\selectcolormodel{rgb}\definecolor{black}{rgb}{0,0,0}\AtBeginDocument{\color{black}}}
-		{cmyk}{\selectcolormodel{cmyk}\definecolor{black}{cmyk}{0,0,0,1}\AtBeginDocument{\color{black}}}}
-	[\ClassError{\@classname}{Only ``rgb'' or ``cmyk'' are valid arguments on }{}]  
-=======
     \IfStrEqCase{#1}{%
         {rgb}{\selectcolormodel{rgb}\definecolor{black}{rgb}{0,0,0}\AtBeginDocument{\color{black}}}
         {cmyk}{\selectcolormodel{cmyk}\definecolor{black}{cmyk}{0,0,0,1}\AtBeginDocument{\color{black}}}}
     [\ClassError{\@classname}{Only ``rgb'' or ``cmyk'' are valid arguments on }{}]  
->>>>>>> desenvolvimento
 }
 \colorspace{rgb}                                                          % Default
 
@@ -332,15 +305,12 @@
     \begin{#1}\begin{minipage}[top]{#2}\linespread{#3}#4\end{minipage}\end{#1}
 }
 
-<<<<<<< HEAD
-=======
 % Emite uma caixa de alerta vermelha indicando ausencia de informacoes obrigatorias:
 %----------------------------------------------------------------------------------
 \newcommand{\@alerta}[1]{%
    \colorbox{red}{#1}
 }
 
->>>>>>> desenvolvimento
 % Definicao do comando \autor{x}{x}{x}:
 %----------------------------------------------------------------------------------
 \def\autor#1#2#3{%
@@ -350,9 +320,6 @@
         {M}{\def\autor@sexo{M}}
         {F}{\def\autor@sexo{F}}}
         [\ClassError{\@classname}{Only ``M'' or ``F'' are valid arguments on }{}]
-<<<<<<< HEAD
-}                                                       \autor{}{}{M}
-=======
 }
 \autor{}{}{M}
 \apptocmd{\autor}{%
@@ -365,17 +332,11 @@
         \def\autor@citacao{\@alerta{CITACAO, N.A.}}
     }{}
 }{}{}
->>>>>>> desenvolvimento
 
 % Definicao do comando \universidade{x}{x}:
 %----------------------------------------------------------------------------------
 \def\universidade#1#2{%
     \def\universidade@nome{#1}
-<<<<<<< HEAD
-    \def\universidade@UNI{#2}
-}
-\universidade{Universidade Federal de Goi\'as}{UFG}                       % Default
-=======
     \def\universidade@sigla{#2}
 }
 \universidade{Universidade Federal de Goi\'as}{UFG}                       % Default
@@ -384,7 +345,6 @@
         \def\universidade@nome{\@alerta{NOME DA UNIVERSIDADE}}
     }{}
 }{}{}
->>>>>>> desenvolvimento
 
 % Definicao do comando \faculdade{x}{x}:
 %----------------------------------------------------------------------------------
@@ -393,14 +353,11 @@
     \def\faculdade@depto{#2}
 }
 \faculdade{Instituto de F\'isica}{}                                       % Default
-<<<<<<< HEAD
-=======
 \apptocmd{\faculdade}{%
     \ifdefstring{\faculdade@nome}{}{%
         \def\faculdade@nome{\@alerta{NOME DA FACULDADE}}
     }{}
 }{}{}
->>>>>>> desenvolvimento
 
 % Definicao do comando \habilitacao{x}:
 %----------------------------------------------------------------------------------
@@ -415,43 +372,32 @@
     \def\titulo@titulo{#1}
     \def\titulo@subtitulo{#2}
 }
-<<<<<<< HEAD
-\titulo{T\'itulo do Trabalho}{}                                           % Default
-=======
 \titulo{\@alerta{T\'ITULO DO TRABALHO}}{}                                 % Default
 \apptocmd{\titulo}{%
     \ifdefstring{\titulo@titulo}{}{%
         \def\titulo@titulo{\@alerta{T\'ITULO DO TRABALHO}}
     }{}
 }{}{}
->>>>>>> desenvolvimento
 
 % Definicao do comando \posgrad{x}:
 %----------------------------------------------------------------------------------
 \def\posgrad#1{\def\@posgrad{#1}}
 \posgrad{F\'isica}                                                        % Default
-<<<<<<< HEAD
-=======
 \apptocmd{\posgrad}{%
     \ifdefstring{\@posgrad}{}{%
         \def\@posgrad{\@alerta{NOME DA P\'OS}}
     }{}
 }{}{}
->>>>>>> desenvolvimento
 
 % Definicao do comando \pesquisa{x}:
 %----------------------------------------------------------------------------------
 \def\pesquisa#1{\def\@pesquisa{#1}}
-<<<<<<< HEAD
-\pesquisa{\'Area de pesquisa}                                             % Default
-=======
 \pesquisa{\@alerta{\'AREA DE PESQUISA}}                                   % Default
 \apptocmd{\pesquisa}{%
     \ifdefstring{\@pesquisa}{}{%
         \def\@pesquisa{\@alerta{\'AREA DE PESQUISA}}
     }{}
 }{}{}
->>>>>>> desenvolvimento
 
 % Definicao do comando \data{x}{x}{x}:
 %----------------------------------------------------------------------------------
@@ -481,8 +427,6 @@
     \fi
 }
 
-<<<<<<< HEAD
-=======
 \apptocmd{\data}{%
     \ifdefstring{\data@dia}{}{%
         \def\data@dia{\@alerta{DIA}}
@@ -499,7 +443,6 @@
     }{}
 }{}{}
 
->>>>>>> desenvolvimento
 % Definicao do comando \cidade{x}:
 %----------------------------------------------------------------------------------
 \def\cidade#1{\def\@cidade{#1}}
@@ -509,19 +452,13 @@
 %----------------------------------------------------------------------------------
 \def\orientador#1#2#3{%
     \def\orientador@nome{#1}
-<<<<<<< HEAD
-    \def\orientador@citar{#2}
-=======
     \def\orientador@citacao{#2}
->>>>>>> desenvolvimento
     \IfStrEqCase{#3}{%
         {M}{\def\orientador@sexo{M}}
         {F}{\def\orientador@sexo{F}}}
         [\ClassError{\@classname}{Only ``M'' or ``F'' are valid arguments on }{}]
 }
 \orientador{}{}{M}                                                        % Default
-<<<<<<< HEAD
-=======
 \apptocmd{\orientador}{%
     \ifdefstring{\orientador@nome}{}{%
         \def\orientador@nome{\@alerta{NOME DO ORIENTADOR}}
@@ -532,7 +469,6 @@
         \def\orientador@citacao{\@alerta{CITACAO, N.O.}}
     }{}
 }{}{}
->>>>>>> desenvolvimento
 
 % Definicao do comando \orientadorfacul{x}{x}:
 %----------------------------------------------------------------------------------
@@ -541,24 +477,17 @@
     \def\orientador@depto{#2}
 }
 \orientadorfacul{}{}                                                      % Default
-<<<<<<< HEAD
-=======
 \apptocmd{\orientadorfacul}{%
     \ifdefstring{\orientador@facul}{}{%
         \def\orientador@facul{\@alerta{FACULDADE DO ORIENTADOR}}
     }{}
 }{}{}
->>>>>>> desenvolvimento
 
 % Definicao do comando \coorientador{x}{x}{x}:
 %----------------------------------------------------------------------------------
 \def\coorientador#1#2#3{%
     \def\coorientador@nome{#1}
-<<<<<<< HEAD
-    \def\coorientador@citar{#2}
-=======
     \def\coorientador@citacao{#2}
->>>>>>> desenvolvimento
     \IfStrEqCase{#3}{%
         {M}{\def\coorientador@sexo{M}}
         {F}{\def\coorientador@sexo{F}}}
@@ -574,32 +503,6 @@
 }
 \coorientadorfacul{}{}                                                    % Default
 
-<<<<<<< HEAD
-% Emite uma caixa de alerta vermelha indicando ausencia de informacoes obrigatorias:
-%----------------------------------------------------------------------------------
-\newcommand{\@alertavermelho}[1]{%
-    \begin{tikzpicture}
-            \node[rectangle,inner sep=1.7pt,inner ysep=1pt,inner xsep=10pt,fill=red]{#1};
-    \end{tikzpicture}
-}
-\apptocmd{\data}{%
-    \ifdefstring{\data@dia}{}{%
-        \def\data@dia{\@alertavermelho{DIA}}
-    }{}
-}{}{}
-\apptocmd{\data}{%
-    \ifdefstring{\data@mes@set}{}{%
-        \def\data@mes{\@alertavermelho{MES}}
-    }{}
-}{}{}
-\apptocmd{\data}{%
-    \ifdefstring{\data@ano}{}{%
-        \def\data@ano{\@alertavermelho{ANO}}
-    }{}
-}{}{}
-
-=======
->>>>>>> desenvolvimento
 % Definicao do ambiente \begin{citacao}...\end{citacao} (ABNT NBR 10520/2002 - 5.3):
 %----------------------------------------------------------------------------------
 \newenvironment{citacao}%
@@ -705,11 +608,7 @@
     \info@pos{center}{\textwidth}{1}{\centering\large \scshape \autor@nome \normalsize \upshape}
     \vspace*{\stretch{8}}
     \info@pos{center}{\textwidth}{1.8}{\centering\huge \textbf{\titulo@titulo} \normalsize}
-<<<<<<< HEAD
-	\vspace*{\stretch{0.1}}
-=======
     \vspace*{\stretch{0.1}}
->>>>>>> desenvolvimento
     \ifdefstring{\titulo@subtitulo}{}{}{%
         \info@pos{center}{\textwidth}{1.3}{\centering\Large \titulo@subtitulo\relax \normalsize}}
     \vspace*{\stretch{9}}
@@ -764,24 +663,14 @@
             \ifbool{>monografia}{Monografia}{%
                 \ifbool{>tcc}{Trabalho de Conclus\~ao de Curso}{%
                     \ifbool{>quali-msc}{Trabalho de Qualifica\c{c}\~ao}{%
-<<<<<<< HEAD
-	                    \ifbool{>quali-doc}{Trabalho de \\ Qualifica\c{c}\~ao}{}%
-=======
                         \ifbool{>quali-doc}{Trabalho de \\ Qualifica\c{c}\~ao}{}%
->>>>>>> desenvolvimento
     }}}}} em \ifbool{>tese}{\\}{}Formato Eletr\^onico}
     \vspace*{30pt}
     \par
     Na qualidade de titular dos direitos de autor, \textbf{AUTORIZO} o
-<<<<<<< HEAD
-    \faculdade@nome\ da \universidade@nome\ (\universidade@UNI) a reproduzir, inclusive em outro formato
-    ou m\'{i}dia e atrav\'es de armazenamento permanente ou tempor\'ario, bem como a publicar
-    na rede mundial de computadores (\textit{Internet}) e na biblioteca virtual da \universidade@UNI,
-=======
     \faculdade@nome\ da \universidade@nome\ (\universidade@sigla) a reproduzir, inclusive em outro formato
     ou m\'{i}dia e atrav\'es de armazenamento permanente ou tempor\'ario, bem como a publicar
     na rede mundial de computadores (\textit{Internet}) e na biblioteca virtual da \universidade@sigla,
->>>>>>> desenvolvimento
     entendendo-se os termos ``reproduzir'' e ``publicar'' conforme defini\c c\~oes dos
     incisos VI e I, respectivamente, do artigo 5\textordmasculine\ da Lei
     n\textordmasculine\ 9610/98 de 10/02/1998, a obra abaixo especificada, sem
@@ -865,11 +754,7 @@
     \info@pos{flushright}{9.2cm}{1}{%
         \ifbool{>tese}{%
             Tese apresentada ao Programa de P\'os--Gradua\c c\~ao %
-<<<<<<< HEAD
-            do \faculdade@nome\ da \universidade@nome, como requisito%
-=======
             do \faculdade@nome\ da \universidade@nome, como requisito %
->>>>>>> desenvolvimento
             para obten\c c\~ao do grau de Doutor em \@posgrad.
         }{\ifbool{>dissertacao}{%
             Disserta\c{c}\~{a}o apresentada ao Programa de Pós--Gradua\c c\~ao %
@@ -959,11 +844,7 @@
             \ifbool{>monografia}{Monografia}{%
                 \ifbool{>tcc}{Trabalho de Conclus\~ao de Curso}{%
                     \ifbool{>quali-msc}{Trabalho de Qualifica\c{c}\~ao de Mestrado}{
-<<<<<<< HEAD
-	                    \ifbool{>quali-doc}{Trabalho de Qualifica\c{c}\~ao de Doutorado}{}                    
-=======
                         \ifbool{>quali-doc}{Trabalho de Qualifica\c{c}\~ao de Doutorado}{}                    
->>>>>>> desenvolvimento
     }}}}} -- \universidade@nome .
     \par
     \hspace{\@parindentlength}\faculdade@nome, \data@dia\ de \data@mes de \data@ano.
@@ -1174,11 +1055,7 @@
             \begin{minipage}{13.5cm}
             \autor@citacao\
             \textbf{\titulo@titulo}%
-<<<<<<< HEAD
-			\ifdefstring{\titulo@subtitulo}{}{.}{~-- \titulo@subtitulo.}            
-=======
             \ifdefstring{\titulo@subtitulo}{}{.}{~-- \titulo@subtitulo.}            
->>>>>>> desenvolvimento
             \@cidade, \data@ano.
             \pageref{LastPage} p.~%
             \ifbool{>tese}{%
@@ -1393,13 +1270,8 @@
     morecomment=[s][\color{Strings}]{'''}{'''},
     morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert,void},
     keywordstyle={\color{Keywords}\bfseries},
-<<<<<<< HEAD
-	keywords=[2]{@,@rm,@echo,rm,echo,pdflatex,bibtex,shell,grep,ifeq,endif,pwd},
-	keywordstyle=[2]\color{Keywords},	    
-=======
     keywords=[2]{@,@rm,@echo,rm,echo,pdflatex,bibtex,shell,grep,ifeq,endif,pwd},
     keywordstyle=[2]\color{Keywords},       
->>>>>>> desenvolvimento
     morekeywords={[3]@invariant},
     keywordstyle={[3]\color{Decorators}\slshape},
     rulecolor=\color{red}
@@ -1452,27 +1324,13 @@
         \pdfbookmark[0]{Sumário}{sumario}
     \fi
 %    \ps@empty                              % Verificar indice com mais de 3 paginas
-<<<<<<< HEAD
-	\pagestyle{\page@type}
-=======
     \pagestyle{\page@type}
->>>>>>> desenvolvimento
     \newlength\mylen
     \renewcommand\cftchappresnum{\bfseries \@chapapp~}
     \settowidth\mylen{\bfseries\cftchappresnum\cftchapaftersnum}
     \addtolength\cftchapnumwidth{\mylen}
     \renewcommand\cftchapaftersnum{:}
     \tableofcontents
-<<<<<<< HEAD
-	\addtocontents{toc}{\protect\thispagestyle{\page@type}}    
-	% \pagestyle{\page@type}
-    \clearpage
-    \cleardoublepage
-    \pagestyle{fancy}
-	\ifbool{>paginacao}{%
-		\pagenumbering{arabic}
-		\setcounter{page}{1}  
-=======
     \addtocontents{toc}{\protect\thispagestyle{\page@type}}    
     % \pagestyle{\page@type}
     \clearpage
@@ -1481,7 +1339,6 @@
     \ifbool{>paginacao}{%
         \pagenumbering{arabic}
         \setcounter{page}{1}  
->>>>>>> desenvolvimento
     }{}
 }
 
@@ -1678,17 +1535,6 @@
 % Define o comando \fonte para figuras e tabelas:
 %----------------------------------------------------------------------------------
 \newcommand{\fonte}[2][Fonte]{%
-<<<<<<< HEAD
-	\par
-	\vskip 5pt
-	\begingroup
-		\@parboxrestore
-		\if@minipage
-			\@setminipage
-		\fi
-        \captionsetup{labelseparator=colon}
-	\@makecaption{#1}{\ignorespaces #2}
-=======
     \par
     \vskip 5pt
     \begingroup
@@ -1698,7 +1544,6 @@
         \fi
         \captionsetup{labelseparator=colon}
     \@makecaption{#1}{\ignorespaces #2}
->>>>>>> desenvolvimento
     \vskip-10pt
 \endgroup
 }
@@ -1725,13 +1570,8 @@
     \fancyhead[LE]{\thepage}
     \fancyhead[LO]{\sf\small\nouppercase\rightmark}
     \fancyhead[RO]{\thepage}
-<<<<<<< HEAD
-    \fancyfoot[RO]{\logo@if@footer\sf\small\faculdade@nome\ -- \universidade@UNI}
-    \fancyfoot[LE]{\logo@if@footer\sf\small\faculdade@nome\ -- \universidade@UNI}
-=======
     \fancyfoot[RO]{\logo@if@footer\raisebox{0.3 em}{\sf\small\faculdade@nome\ -- \universidade@sigla}}
     \fancyfoot[LE]{\logo@if@footer\raisebox{0.3 em}{\sf\small\faculdade@nome\ -- \universidade@sigla}}
->>>>>>> desenvolvimento
 }{}
 
 \ifbool{>frente}{%
@@ -1743,11 +1583,7 @@
             \sf\small\nouppercase\rightmark
         \fi
     }
-<<<<<<< HEAD
-    \fancyfoot[R]{\logo@if@footer\sf\small\faculdade@nome\ -- \universidade@UNI}
-=======
     \fancyfoot[R]{\logo@if@footer\sf\small\faculdade@nome\ -- \universidade@sigla}
->>>>>>> desenvolvimento
 }{}
 
 % Geometria do documento (ABNT: NBR 14724/2011 - 5.1):
