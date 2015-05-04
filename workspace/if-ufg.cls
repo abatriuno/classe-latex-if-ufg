@@ -19,7 +19,7 @@
 %                         if-ufg   CRIACAO DA CLASSE
 %==================================================================================
 \newcommand{\@class@name}{if-ufg}                     % Definicao do nome da classe.
-\newcommand{\@class@author}{Alexandre Barbosa}
+\newcommand{\@class@author}{Alexandre Barbosa}        % Autor da classe.
 \newcommand{\@class@release}{19/04/2015}              % Data de lancamento da classe.
 \newcommand{\@class@version}{1.0}                     % Versao da classe.
 
@@ -392,7 +392,7 @@
 % Definicao do comando \pesquisa{x}:
 %----------------------------------------------------------------------------------
 \def\pesquisa#1{\def\@pesquisa{#1}}
-\pesquisa{\@alerta{\'AREA DE PESQUISA}}                                   % Default
+\pesquisa{\texorpdfstring{\@alerta{\'AREA DE PESQUISA}}{\'AREA DE PESQUISA}} % Default
 \apptocmd{\pesquisa}{%
     \ifdefstring{\@pesquisa}{}{%
         \def\@pesquisa{\@alerta{\'AREA DE PESQUISA}}
@@ -663,8 +663,8 @@
         \ifbool{>dissertacao}{Disserta\c{c}\~ao}{%
             \ifbool{>monografia}{Monografia}{%
                 \ifbool{>tcc}{Trabalho de Conclus\~ao de Curso}{%
-                    \ifbool{>quali-msc}{Trabalho de Qualifica\c{c}\~ao}{%
-                        \ifbool{>quali-doc}{Trabalho de \\ Qualifica\c{c}\~ao}{}%
+                    \ifbool{>quali-msc}{Trabalho de Qualifica\c{c}\~ao de Mestrado}{%
+                        \ifbool{>quali-doc}{Trabalho de \\ Qualifica\c{c}\~ao de Doutorado}{}%
     }}}}} em \ifbool{>tese}{\\}{}Formato Eletr\^onico}
     \vspace*{30pt}
     \par
@@ -770,11 +770,11 @@
             \faculdade@nome\ da\ \universidade@nome, como requisito para obten\c c\~ao do\ %
             Certificado de Especializa\c{c}\~ao em \@posgrad.
         }{\ifbool{>quali-msc}{%
-            Trabalho de Qualifica\c{c}\~{a}o apresentado ao Programa de Pós--Gradua\c c\~ao %
+            Trabalho de Qualifica\c{c}\~{a}o de Mestrado apresentado ao Programa de Pós--Gradua\c c\~ao %
             do \faculdade@nome\ da \universidade@nome, como requisito parcial para %
             obten\c c\~ao do t\'itulo de Mestre em \@posgrad.
         }{\ifbool{>quali-doc}{%
-            Trabalho de Qualifica\c{c}\~{a}o apresentado ao Programa de Pós--Gradua\c c\~ao %
+            Trabalho de Qualifica\c{c}\~{a}o de Doutorado apresentado ao Programa de Pós--Gradua\c c\~ao %
             do \faculdade@nome\ da \universidade@nome, como requisito parcial para %
             obten\c c\~ao do grau de Doutor em \@posgrad.
         }{}
@@ -919,12 +919,12 @@
             Certificado de Especializa\c{c}\~ao em \@posgrad, aprovada em \data@dia\ de \data@mes de \data@ano, %
             pela Banca Examinadora constitu\'{i}da pelos professores:%
         }{\ifbool{>quali-msc}{%
-            Trabalho de Qualifica\c{c}\~{a}o apresentado ao Programa de P\'os--Gradua\c c\~ao %
+            Trabalho de Qualifica\c{c}\~{a}o de Mestrado apresentado ao Programa de P\'os--Gradua\c c\~ao %
             do \faculdade@nome\ da \universidade@nome\ como requisito parcial %
             para obten\c c\~ao do t\'itulo de Mestre em \@posgrad, aprovada em %
             \data@dia\ de \data@mes de \data@ano, pela Banca Examinadora constitu\'{i}da pelos professores:%
         }{\ifbool{>quali-doc}{%
-            Trabalho de Qualifica\c{c}\~{a}o apresentado ao Programa de P\'os--Gradua\c c\~ao %
+            Trabalho de Qualifica\c{c}\~{a}o de Doutorado apresentado ao Programa de P\'os--Gradua\c c\~ao %
             do \faculdade@nome\ da \universidade@nome\ como requisito parcial %
             para obten\c c\~ao do grau de Doutor em \@posgrad, aprovada em %
             \data@dia\ de \data@mes de \data@ano, pela Banca Examinadora constitu\'{i}da pelos professores:%
@@ -1571,8 +1571,8 @@
     \fancyhead[LE]{\thepage}
     \fancyhead[LO]{\sf\small\nouppercase\rightmark}
     \fancyhead[RO]{\thepage}
-    \fancyfoot[RO]{\logo@if@footer\raisebox{0.3 em}{\sf\small\faculdade@nome\ -- \universidade@sigla}}
-    \fancyfoot[LE]{\logo@if@footer\raisebox{0.3 em}{\sf\small\faculdade@nome\ -- \universidade@sigla}}
+    \fancyfoot[RO]{\logo@if@footer\raisebox{0 em}{\sf\small\faculdade@nome\ -- \universidade@sigla}}
+    \fancyfoot[LE]{\logo@if@footer\raisebox{0 em}{\sf\small\faculdade@nome\ -- \universidade@sigla}}
 }{}
 
 \ifbool{>frente}{%
