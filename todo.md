@@ -4,3 +4,5 @@
 - [ ] Verificar as dimensões do pacote geometry;
 - [ ] Corrigir footnotes nos captions;
 - [ ] Retirar pacote float;
+- [ ] Verificar float intexsep;
+- [ ] Mudança no comando \fonte;
