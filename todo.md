@@ -6,3 +6,5 @@
 - [ ] Retirar pacote float;
 - [ ] Verificar float intexsep;
 - [ ] Mudança no comando \fonte;
+- [ ] Implementar um comando de revisão de texto;
+- [ ] Verificar pdfbookmark;
