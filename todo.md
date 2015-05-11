@@ -8,3 +8,4 @@
 - [ ] Mudança no comando \fonte;
 - [ ] Implementar um comando de revisão de texto;
 - [ ] Verificar pdfbookmark;
+- [ ] Verificar Makefile inf e if;
