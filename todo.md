@@ -9,3 +9,4 @@
 - [ ] Implementar um comando de revisão de texto;
 - [ ] Verificar pdfbookmark;
 - [ ] Verificar Makefile inf e if;
+- [ ] Verificar \textwidth no ambiente figura;
